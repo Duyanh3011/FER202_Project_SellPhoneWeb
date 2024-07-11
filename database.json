@@ -1,0 +1,599 @@
+{
+  "Category": [
+    {
+      "id": "1",
+      "Category_Name": "Samsung",
+      "Logo": "Images/category/samsung.png"
+    },
+    {
+      "id": "2",
+      "Category_Name": "Xiaomi",
+      "Logo": "Images/category/xiaomi.png"
+    },
+    {
+      "id": "3",
+      "Category_Name": "Vivo",
+      "Logo": "Images/category/vivo.png"
+    },
+    {
+      "id": "4",
+      "Category_Name": "Iphone",
+      "Logo": "Images/category/iphone.png"
+    },
+    {
+      "id": "5",
+      "Category_Name": "Oppo",
+      "Logo": "Images/category/oppo.png"
+    },
+    {
+      "id": "6",
+      "Category_Name": "Nokia",
+      "Logo": "Images/category/nokia.png"
+    }
+  ],
+  "suppliers": [
+    {
+        "id": 1,
+        "name": "FPT Shop",
+        "location": "Hanoi",
+        "website": "https://fptshop.com.vn"
+    },
+    {
+        "id": 2,
+        "name": "Viettel Store",
+        "location": "Ho Chi Minh City",
+        "website": "https://viettelstore.vn"
+    },
+    {
+        "id": 3,
+        "name": "Pico",
+        "location": "Da Nang",
+        "website": "https://pico.vn"
+    },
+    {
+        "id": 4,
+        "name": "Media Mart",
+        "location": "Haiphong",
+        "website": "https://mediamart.vn"
+    }
+  ],
+
+  "products": [
+    {
+      "id": "1",
+      "Name": "Samsung Galaxy Z Flip4 5G 128GB",
+      "Category_ID": 1,
+      "Price": 15990000,
+      "Supplier_ID": 1,
+      "Images": [
+        {
+          "id": 1,
+          "link": "https://cdn2.cellphones.com.vn/x/media/catalog/product/s/a/samsung_galaxy_z_flip_m_i_2022-4.jpg"
+        },
+        {
+          "id": 2,
+          "link": "https://cdn2.cellphones.com.vn/x/media/catalog/product/s/a/samsung_galaxy_z_flip_m_i_2022-11.jpg"
+        },
+        {
+          "id": 3,
+          "link": "https://cdn2.cellphones.com.vn/x/media/catalog/product/s/a/samsung_galaxy_z_flip_m_i_2022-18.jpg"
+        },
+        {
+          "id": 4,
+          "link": "https://cdn2.cellphones.com.vn/x/media/catalog/product/s/a/samsung_galaxy_z_flip_m_i_2022-25.jpg"
+        }
+      ]
+    }
+,
+{
+  "id": "2",
+  "Name": "Samsung Galaxy S22 5G 128GB",
+  "Category_ID": 1,
+  "Price": 12490000,
+  "Supplier_ID": 2,
+  "Images": [
+    {
+      "id": 1,
+      "link": "https://cdn2.cellphones.com.vn/x/media/catalog/product/s/m/sm-s901_galaxys22_rside_pinkgold_006_1_1_1.jpg"
+    },
+    {
+      "id": 2,
+      "link": "https://cdn2.cellphones.com.vn/x/media/catalog/product/s/m/sm-s901_galaxys22_rside_pinkgold_007_1_1_1.jpg"
+    },
+    {
+      "id": 3,
+      "link": "https://cdn2.cellphones.com.vn/x/media/catalog/product/s/m/sm-s901_galaxys22_rside_pinkgold_008_1_1_1.jpg"
+    },
+    {
+      "id": 4,
+      "link": "https://cdn2.cellphones.com.vn/x/media/catalog/product/s/m/sm-s901_galaxys22_rside_pinkgold_009_1_1_1.jpg"
+    }
+  ]
+},
+      {
+        "id": "3",
+        "Name": "Samsung Galaxy S23 Ultra 5G 256GB",
+        "Category_ID": 1,
+        "Price": 25990000,
+        "Supplier_ID": 3,
+        "Images": [
+          {
+            "id": 1,
+            "link": "https://cdn2.cellphones.com.vn/x/media/catalog/product/s/a/samsung-galaxy-s23-fe_6_.png"
+          },
+          {
+            "id": 2,
+            "link": "https://cdn2.cellphones.com.vn/x/media/catalog/product/s/a/samsung-galaxy-s23-fe_1_.jpg"
+          },
+          {
+            "id": 3,
+            "link": "https://cdn2.cellphones.com.vn/x/media/catalog/product/s/a/samsung-galaxy-s23-fe_2_.jpg"
+          },
+          {
+            "id": 4,
+            "link": "https://cdn2.cellphones.com.vn/x/media/catalog/product/s/a/samsung-galaxy-s23-fe_3_.jpg"
+          }
+        ]
+      },
+      
+      {
+        "id": "4",
+        "Name": "Samsung Galaxy Z Fold4 5G 256GB",
+        "Category_ID": 1,
+        "Price": 29990000,
+        "Supplier_ID": 4,
+        "Images": [
+          {
+            "id": 1,
+            "link": "https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/s/a/samsung_galaxy_z_fold_4-1.jpg"
+          },
+          {
+            "id": 2,
+            "link": "https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/s/a/samsung_galaxy_z_fold_4-2.jpg"
+          },
+          {
+            "id": 3,
+            "link": "https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/s/a/samsung_galaxy_z_fold_4-3.jpg"
+          },
+          {
+            "id": 4,
+            "link": "https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/s/a/samsung_galaxy_z_fold_4-4.jpg"
+          }
+        ]
+      },
+      
+      {
+        "id": "5",
+        "Name": "Xiaomi Redmi 10A 3GB-64GB",
+        "Category_ID": 2,
+        "Price": 2590000,
+        "Supplier_ID": 1,
+        "Quantity": 10,
+        "Images": [
+          {
+            "id": 1,
+            "link": "https://cdn2.cellphones.com.vn/x/media/catalog/product/x/i/xiaomi-redmi-a3-den-1.png"
+          },
+          {
+            "id": 2,
+            "link": "https://cdn2.cellphones.com.vn/x/media/catalog/product/x/i/xiaomi-redmi-a3-den-2.png"
+          },
+          {
+            "id": 3,
+            "link": "https://cdn2.cellphones.com.vn/x/media/catalog/product/x/i/xiaomi-redmi-a3-den-3.png"
+          }
+        ]
+      },
+      {
+        "id": "6",
+        "Name": "Xiaomi Redmi 10 2022 4GB-128GB",
+        "Category_ID": 2,
+        "Price": 3790000,
+        "Supplier_ID": 2,
+        "Images": [
+          {
+            "id": 1,
+            "link": "https://cdn2.cellphones.com.vn/x/media/catalog/product/r/e/redmi-10-02_1_1_1_1_2_1_4.jpg"
+          },
+          {
+            "id": 2,
+            "link": "https://cdn2.cellphones.com.vn/x/media/catalog/product/r/e/redmi-10-03_1_1_1_1_2_1_4.jpg"
+          },
+          {
+            "id": 3,
+            "link": "https://cdn2.cellphones.com.vn/x/media/catalog/product/r/e/redmi-10-04_1_1_1_1_2_1_4.jpg"
+          },
+          {
+            "id": 4,
+            "link": "https://cdn2.cellphones.com.vn/x/media/catalog/product/r/e/redmi-10-05_1_1_1_1_2_1_4.jpg"
+          }
+        ]
+      }
+      ,      
+      {
+        "id": "7",
+        "Name": "Xiaomi Redmi Note 12 4GB-128GB",
+        "Category_ID": 2,
+        "Price": 4590000,
+        "Supplier_ID": 3,
+        "Images": [
+          {
+            "id": 1,
+            "link": "https://cdn2.cellphones.com.vn/x/media/catalog/product/r/g/rgt76878_1__3.jpg"
+          },
+          {
+            "id": 2,
+            "link": "https://cdn2.cellphones.com.vn/x/media/catalog/product/r/g/rgt76878_2__3.jpg"
+          },
+          {
+            "id": 3,
+            "link": "https://cdn2.cellphones.com.vn/x/media/catalog/product/r/g/rgt76878_3__3.jpg"
+          },
+          {
+            "id": 4,
+            "link": "https://cdn2.cellphones.com.vn/x/media/catalog/product/r/g/rgt76878_4__3.jpg"
+          }
+        ]
+      }
+      ,
+        {
+          "id": "8",
+          "Name": "Xiaomi 13 Lite 8GB-128GB",
+          "Category_ID": 2,
+          "Price": 8790000,
+          "Supplier_ID": 4,
+          "Images": [
+            {
+              "id": 1,
+              "link": "https://cdn2.cellphones.com.vn/x/media/catalog/product/x/i/xiaomi-redmi-note-13-pro-4g_2__1.png"
+            },
+            {
+              "id": 2,
+              "link": "https://cdn2.cellphones.com.vn/x/media/catalog/product/x/i/xiaomi-redmi-note-13-pro-4g_3__1.png"
+            },
+            {
+              "id": 3,
+              "link": "https://cdn2.cellphones.com.vn/x/media/catalog/product/x/i/xiaomi-redmi-note-13-pro-4g_4__1.png"
+            },
+            {
+              "id": 4,
+              "link": "https://cdn2.cellphones.com.vn/x/media/catalog/product/x/i/xiaomi-redmi-note-13-pro-4g_5__1.png"
+            }
+          ]
+        },
+        {
+          "id": "9",
+          "Name": "Vivo V25 5G 8GB-128GB",
+          "Category_ID": 3,
+          "Price": 9390000,
+          "Supplier_ID": 1,
+          "Images": [
+            {
+              "id": 1,
+              "link": "https://cdn2.cellphones.com.vn/x/media/catalog/product/v/i/vivo-v27e_5__1_1_1.jpg"
+            },
+            {
+              "id": 2,
+              "link": "https://cdn2.cellphones.com.vn/x/media/catalog/product/v/i/vivo-v27e_6__1_1_1.jpg"
+            },
+            {
+              "id": 3,
+              "link": "https://cdn2.cellphones.com.vn/x/media/catalog/product/v/i/vivo-v27e_7__1_1_1.jpg"
+            },
+            {
+              "id": 4,
+              "link": "https://cdn2.cellphones.com.vn/x/media/catalog/product/v/i/vivo-v27e_8__1_1_1.jpg"
+            }
+          ]
+        },        
+        {
+          "id": "10",
+          "Name": "Vivo V25 5G 8GB-128GB",
+          "Category_ID": 3,
+          "Price": 8490000,
+          "Supplier_ID": 2,
+          "Images": [
+            {
+              "id": 1,
+              "link": "https://cdn2.cellphones.com.vn/x/media/catalog/product/v/i/vivo-v27e_9__1_1_1.jpg"
+            },
+            {
+              "id": 2,
+              "link": "https://cdn2.cellphones.com.vn/x/media/catalog/product/v/i/vivo-v27e_10__1_1_1.jpg"
+            },
+            {
+              "id": 3,
+              "link": "https://cdn2.cellphones.com.vn/x/media/catalog/product/v/i/vivo-v27e_11__1_1_1.jpg"
+            },
+            {
+              "id": 4,
+              "link": "https://cdn2.cellphones.com.vn/x/media/catalog/product/v/i/vivo-v27e_12__1_1_1.jpg"
+            }
+          ]
+        },        
+        {
+          "id": "11",
+          "Name": "Vivo Y35 8GB-128GB",
+          "Category_ID": 3,
+          "Price": 6990000,
+          "Supplier_ID": 3,
+          "Images": [
+            {
+              "id": 1,
+              "link": "https://cdn2.cellphones.com.vn/x/media/catalog/product/s/a/samsung-galaxy-a35_6_.png"
+            },
+            {
+              "id": 2,
+              "link": "https://cdn2.cellphones.com.vn/x/media/catalog/product/s/a/samsung-galaxy-a35_7_.png"
+            },
+            {
+              "id": 3,
+              "link": "https://cdn2.cellphones.com.vn/x/media/catalog/product/s/a/samsung-galaxy-a35_8_.png"
+            },
+            {
+              "id": 4,
+              "link": "https://cdn2.cellphones.com.vn/x/media/catalog/product/s/a/samsung-galaxy-a35_9_.png"
+            }
+          ]
+        },        
+    
+        {
+          "id": "13",
+          "Name": "iPhone 13 128GB",
+          "Category_ID": 4,
+          "Price": 16790000,
+          "Supplier_ID": 1,
+          "Images": [
+            {
+              "id": 1,
+              "link": "https://cdn2.cellphones.com.vn/x/media/catalog/product/i/p/iphone_13_128gb_-_2_1__1.png"
+            },
+            {
+              "id": 2,
+              "link": "https://cdn2.cellphones.com.vn/x/media/catalog/product/i/p/iphone_13_128gb_-_3_1__1.png"
+            },
+            {
+              "id": 3,
+              "link": "https://cdn2.cellphones.com.vn/x/media/catalog/product/i/p/iphone_13_128gb_-_4_1__1.png"
+            },
+            {
+              "id": 4,
+              "link": "https://cdn2.cellphones.com.vn/x/media/catalog/product/i/p/iphone_13_128gb_-_5_1__1.png"
+            }
+          ]
+        }
+        ,
+        {
+          "id": "14",
+          "Name": "iPhone 14 128GB",
+          "Category_ID": 4,
+          "Price": 19180000,
+          "Supplier_ID": 2,
+          "Images": [
+            {
+              "id": 1,
+              "link": "https://cdn2.cellphones.com.vn/x/media/catalog/product/i/p/iphone-14-plus-7_1.png"
+            },
+            {
+              "id": 2,
+              "link": "https://cdn2.cellphones.com.vn/x/media/catalog/product/i/p/iphone-14-plus-2_1.png"
+            },
+            {
+              "id": 3,
+              "link": "https://cdn2.cellphones.com.vn/x/media/catalog/product/i/p/iphone-14-plus-3_1.png"
+            },
+            {
+              "id": 4,
+              "link": "https://cdn2.cellphones.com.vn/x/media/catalog/product/i/p/iphone-14-plus-4_1.png"
+            }
+          ]
+        }
+        ,
+        {
+          "id": "15",
+          "Name": "iPhone 14 Pro 128GB",
+          "Category_ID": 4,
+          "Price": 24880000,
+          "Supplier_ID": 3,
+          "Images": [
+            {
+              "id": 1,
+              "link": "https://cdn2.cellphones.com.vn/x/media/catalog/product/i/p/iphone-15-pro-max_3.png"
+            },
+            {
+              "id": 2,
+              "link": "https://cdn2.cellphones.com.vn/x/media/catalog/product/i/p/iphone-15-pro-max_3.png"
+            },
+            {
+              "id": 3,
+              "link": "https://cdn2.cellphones.com.vn/x/media/catalog/product/i/p/iphone-15-pro-max_3.png"
+            },
+            {
+              "id": 4,
+              "link": "https://cdn2.cellphones.com.vn/x/media/catalog/product/i/p/iphone-15-pro-max_3.png"
+            }
+          ]
+        },
+        
+        {
+          "id": "17",
+          "Name": "OPPO Reno8 T 5G 128GB",
+          "Category_ID": 5,
+          "Price": 9490000,
+          "Supplier_ID": 1,
+          "Images": [
+            {
+              "id": 1,
+              "link": "https://cdn2.cellphones.com.vn/x/media/catalog/product/o/p/oppo_reno8_t_256gb_1_.jpg"
+            },
+            {
+              "id": 2,
+              "link": "https://cdn2.cellphones.com.vn/x/media/catalog/product/o/p/oppo_reno8_t_256gb_2_.jpg"
+            },
+            {
+              "id": 3,
+              "link": "https://cdn2.cellphones.com.vn/x/media/catalog/product/o/p/oppo_reno8_t_256gb_3_.jpg"
+            },
+            {
+              "id": 4,
+              "link": "https://cdn2.cellphones.com.vn/x/media/catalog/product/o/p/oppo_reno8_t_256gb_4_.jpg"
+            }
+          ]
+        }
+        ,
+        {
+          "id": "18",
+          "Name": "OPPO Reno8 4G 8GB - 256GB",
+          "Category_ID": 5,
+          "Price": 6990000,
+          "Supplier_ID": 2,
+          "Images": [
+            {
+              "id": 1,
+              "link": "https://cdn2.cellphones.com.vn/x/media/catalog/product/o/p/oppo_reno8_t_256gb_15_.jpg"
+            },
+            {
+              "id": 2,
+              "link": "https://cdn2.cellphones.com.vn/x/media/catalog/product/o/p/oppo_reno8_t_256gb_6_.jpg"
+            },
+            {
+              "id": 3,
+              "link": "https://cdn2.cellphones.com.vn/x/media/catalog/product/o/p/oppo_reno8_t_256gb_7_.jpg"
+            },
+            {
+              "id": 4,
+              "link": "https://cdn2.cellphones.com.vn/x/media/catalog/product/o/p/oppo_reno8_t_256gb_8_.jpg"
+            }
+          ]
+        }
+        ,
+        {
+          "id": "19",
+          "Name": "OPPO A55 4GB-64GB",
+          "Category_ID": 5,
+          "Price": 3690000,
+          "Supplier_ID": 3,
+          "Images": [
+            {
+              "id": 1,
+              "link": "https://cdn2.cellphones.com.vn/x/media/catalog/product/o/p/oppo_reno8_t_256gb_9_.jpg"
+            },
+            {
+              "id": 2,
+              "link": "https://cdn2.cellphones.com.vn/x/media/catalog/product/o/p/oppo_reno8_t_256gb_10_.jpg"
+            },
+            {
+              "id": 3,
+              "link": "https://cdn2.cellphones.com.vn/x/media/catalog/product/o/p/oppo_reno8_t_256gb_11_.jpg"
+            },
+            {
+              "id": 4,
+              "link": "https://cdn2.cellphones.com.vn/x/media/catalog/product/o/p/oppo_reno8_t_256gb_12_.jpg"
+            }
+          ]
+        }
+        ,
+     
+        {
+          "id": "21",
+          "Name": "Nokia 5710 XpressAudio",
+          "Category_ID": 6,
+          "Price": 1390000,
+          "Supplier_ID": 1,
+          "Images": [
+            {
+              "id": 1,
+              "link": "https://cdn2.cellphones.com.vn/x/media/catalog/product/6/0/60.3-nokia-8612.png"
+            },
+            {
+              "id": 2,
+              "link": "https://cdn2.cellphones.com.vn/x/media/catalog/product/6/0/60.2-nokia-8612.png"
+            },
+            {
+              "id": 3,
+              "link": "https://cdn2.cellphones.com.vn/x/media/catalog/product/6/0/60.1-nokia-8612.png"
+            },
+            {
+              "id": 4,
+              "link": "https://cdn2.cellphones.com.vn/x/media/catalog/product/6/0/60.4-nokia-8612.png"
+            }
+          ]
+        }
+        ,
+        {
+          "id": "22",
+          "Name": "Nokia G22 4GB-128GB",
+          "Category_ID": 6,
+          "Price": 3690000,
+          "Supplier_ID": 2,
+          "Images": [
+            {
+              "id": 1,
+              "link": "https://cdn2.cellphones.com.vn/x/media/catalog/product/n/o/nokia-32-1.png"
+            },
+            {
+              "id": 2,
+              "link": "https://cdn2.cellphones.com.vn/x/media/catalog/product/n/o/nokia-32-2.png"
+            },
+            {
+              "id": 3,
+              "link": "https://cdn2.cellphones.com.vn/x/media/catalog/product/n/o/nokia-32-3.png"
+            },
+            {
+              "id": 4,
+              "link": "https://cdn2.cellphones.com.vn/x/media/catalog/product/n/o/nokia-32-4.png"
+            }
+          ]
+        }            
+  ],
+  "user": [
+    {
+      "id": "AB1234",
+      "firstName": "Trinh Thi",
+      "lastName": "Van Anh",
+      "phone": "0912662288",
+      "address": "So 10 Chua Boc",
+      "email": "anhttv20@gmail.com",
+      "dateOfBirth": "1982-04-04",
+      "account": "anhttv20",
+      "roll": 1,
+      "password": "123456"
+    },
+    {
+      "id": "CD1234",
+      "firstName": "Le thi",
+      "lastName": "Trang",
+      "phone": "0913883356",
+      "address": "So 234 Nguyen Tuan",
+      "email": "tranglt@gmail.com",
+      "dateOfBirth": "2003-08-12",
+      "account": "tranglt",
+      "roll": 2,
+      "password": "123456"
+    },
+    {
+      "id": "ca85",
+      "firstName": "Tran Thanh",
+      "lastName": "Long",
+      "phone": "0912774577",
+      "address": "number 10 To Hoang",
+      "email": "longtt@gmail.com",
+      "dateOfBirth": "2003-06-14",
+      "account": "longtt",
+      "roll": 2,
+      "password": "123456"
+    },
+    {
+      "id": "fe01",
+      "firstName": "Tran manh",
+      "lastName": "Tuan",
+      "phone": "0965332366",
+      "address": "",
+      "email": "tuan@gmail.com",
+      "dateOfBirth": "",
+      "account": "tuanmt",
+      "roll": 2,
+      "password": "123456"
+    }
+  ]
+}
