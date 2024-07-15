@@ -17,7 +17,7 @@ export default function Register() {
   const [success, setSuccess] = useState('');
   const [phoneError, setPhoneError] = useState('');
 
-  const hr = useHref('/');
+  const hr = useHref('/register');
 
   const handleSubmit = async (e) => {
     e.preventDefault();

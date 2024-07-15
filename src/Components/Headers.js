@@ -4,10 +4,16 @@ import { PhoneFlip, Search, HouseFill, InfoCircleFill, ThreeDotsVertical, Envelo
 
 export default function Headers() {
     const [signInActive, setSignInActive] = useState(false);
-    const user = localStorage.getItem('user') === null ? 'Sign in' : 'User';
+    const user = localStorage.getItem('user');
 
     const handleSignInClick = () => {
         setSignInActive(true); // Set state để áp dụng hiệu ứng CSS khi nút được nhấn
+        // Thực hiện các hành động khác khi cần
+    };
+
+    const handleLogout = () => {
+        localStorage.removeItem('user'); // Xóa thông tin người dùng khi logout
+        setSignInActive(false); // Đặt lại trạng thái đăng nhập
         // Thực hiện các hành động khác khi cần
     };
 
@@ -32,9 +38,15 @@ export default function Headers() {
                     </div>
                 </Nav>
                 <Nav>
-                    <Nav.Link href="/login" className={`ms-3 ${signInActive ? 'sign-in-active' : ''}`} onClick={handleSignInClick}>
-                        {user}
-                    </Nav.Link>
+                    {user ? (
+                        <Nav.Link href="/logout" className={`ms-3 ${signInActive ? 'sign-in-active' : ''}`} onClick={handleLogout}>
+                            Logout
+                        </Nav.Link>
+                    ) : (
+                        <Nav.Link href="/login" className={`ms-3 ${signInActive ? 'sign-in-active' : ''}`} onClick={handleSignInClick}>
+                            Sign in
+                        </Nav.Link>
+                    )}
                 </Nav>
             </Navbar.Collapse>
         </Navbar>

@@ -1,9 +1,9 @@
-import axios from 'axios';
 import React, { useState } from 'react';
 import { Alert, Button, Card, Col, Form, Row } from 'react-bootstrap';
-import { useHref } from 'react-router-dom';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
-export default function Login() {
+const Login = () => {
     const [account, setAccount] = useState('');
     const [password, setPassword] = useState('');
     const [accountError, setAccountError] = useState('');
@@ -11,42 +11,68 @@ export default function Login() {
     const [error, setError] = useState('');
     const [success, setSuccess] = useState('');
 
-    const hr = useHref('/');
+    const navigate = useNavigate();
 
+    // Function to handle form submission
     const handleSubmit = async (e) => {
         e.preventDefault();
-        
-        // Đặt lại các thông báo lỗi trước khi thực hiện kiểm tra mới
+        resetErrors(); // Reset any previous errors
+
+        try {
+            const users = await fetchUserList(); // Fetch user list
+            const userCheck = findUser(users); // Find user in the list
+
+            if (userCheck) {
+                handleLoginSuccess(userCheck); // Handle successful login
+            } else {
+                handleLoginFailure(users); // Handle login failure
+            }
+        } catch (err) {
+            handleLoginError(); // Handle error fetching user data
+        }
+    };
+
+    // Function to reset errors
+    const resetErrors = () => {
         setAccountError('');
         setPasswordError('');
         setError('');
         setSuccess('');
+    };
 
-        try {
-            const response = await axios.get('http://localhost:9999/user');
-            const users = response.data;
-            
-            // Tìm người dùng trong danh sách dựa trên account hoặc email và password
-            const userCheck = users.find(u => (u.account === account || u.email === account) && u.password === password);
-            
-            if (userCheck) {
-                localStorage.setItem('user', JSON.stringify(userCheck.account));
-                setSuccess('User logged in successfully');
-                setTimeout(() => {
-                    window.location.href = hr;
-                }, 2000);
-            } else {
-                // Kiểm tra xem lỗi là do account không hợp lệ hay password không đúng
-                const accountExists = users.some(u => u.account === account || u.email === account);
-                if (!accountExists) {
-                    setAccountError('Account or email not found');
-                } else {
-                    setPasswordError('Incorrect password');
-                }
-            }
-        } catch (err) {
-            setError('Error fetching user data');
+    // Function to fetch user list
+    const fetchUserList = async () => {
+        const response = await axios.get('http://localhost:9999/user');
+        return response.data;
+    };
+
+    // Function to find user in the list
+    const findUser = (users) => {
+        return users.find(u => (u.account === account || u.email === account) && u.password === password);
+    };
+
+    // Function to handle successful login
+    const handleLoginSuccess = (userCheck) => {
+        localStorage.setItem('user', JSON.stringify(userCheck.account));
+        setSuccess('User logged in successfully');
+        setTimeout(() => {
+            navigate('/'); // Redirect to home page after successful login
+        }, 2000);
+    };
+
+    // Function to handle login failure
+    const handleLoginFailure = (users) => {
+        const accountExists = users.some(u => u.account === account || u.email === account);
+        if (!accountExists) {
+            setAccountError('Account or email not found');
+        } else {
+            setPasswordError('Incorrect password');
         }
+    };
+
+    // Function to handle error fetching user data
+    const handleLoginError = () => {
+        setError('Error fetching user data');
     };
 
     return (
@@ -64,7 +90,7 @@ export default function Login() {
                                 <h1 className="text-center">Sign in</h1>
                                 {error && <Alert variant="danger">{error}</Alert>}
                                 {success && <Alert variant="success">{success}</Alert>}
-                                
+
                                 <Form.Group controlId="formBasicAccount">
                                     <Form.Label>Account or Email</Form.Label>
                                     <Form.Control
@@ -102,4 +128,6 @@ export default function Login() {
             </Row>
         </>
     );
-}
+};
+
+export default Login;
