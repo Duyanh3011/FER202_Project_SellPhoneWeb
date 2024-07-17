@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams, Link } from 'react-router-dom';
 import { Container, Row, Col, Image, Button } from 'react-bootstrap';
+import Footer from './Footer';
+import Headers from './Headers';
 
 const Detail = () => {
     const { id } = useParams();
@@ -33,7 +35,10 @@ const Detail = () => {
     }
 
     return (
-        <Container>
+
+        <div>
+            <Headers />
+            <Container style={{ paddingTop: 70 }}>
             <Row>
                 <Col>
                     <div className="mb-3">
@@ -53,7 +58,9 @@ const Detail = () => {
                     </div>
                 </Col>
             </Row>
-        </Container>
+            </Container>
+            <Footer/>
+        </div>
     );
 };
 

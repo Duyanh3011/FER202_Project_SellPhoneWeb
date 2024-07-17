@@ -48,7 +48,7 @@ const Login = () => {
     };
 
     const handleLoginSuccess = (userCheck) => {
-        localStorage.setItem('user', JSON.stringify(userCheck.account));
+        localStorage.setItem('user', JSON.stringify(userCheck));
         setSuccess('User logged in successfully');
         setTimeout(() => {
             navigate('/'); // Redirect to home page after successful login

@@ -11,12 +11,12 @@ export default function Home() {
   return (
     <>
       <Headers />
-      <Container>
-        <Content />
+      <Container style={{ paddingTop: 50 }}>
         <Routes>
-          <Route path="/detail/:id" element={<Detail />} />
-          <Route path="/cart/:id" element={<Cart />} />
-        </Routes>
+          <Route path="/" element={<Content />} />
+          <Route path="/detail/:id" element={<Detail />} /> {/* Use dynamic parameter for product ID */}
+          <Route path="/cart" element={<Cart />} />        
+          </Routes>
       </Container>
       <Footer />
     </>

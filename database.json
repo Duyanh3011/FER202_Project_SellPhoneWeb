@@ -61,9 +61,8 @@
     {
       "id": "1",
       "Name": "Samsung Galaxy Z Flip4 5G 128GB",
-      "Category_ID": 1,
-      "Price": 15990000,
-      "Supplier_ID": 1,
+      "Category_ID": "1",
+      "Price": "15980000",
       "Images": [
         {
           "id": 1,
@@ -580,6 +579,5 @@
       "roll": 2,
       "password": "123456"
     }
-    
   ]
 }

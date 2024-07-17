@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import Headers from './Headers';
+import { Container } from 'react-bootstrap';
+import Footer from './Footer';
 
 const CartPage = () => {
     const [cartItems, setCartItems] = useState([]);
@@ -25,6 +28,8 @@ const CartPage = () => {
 
     return (
         <div className="container">
+            <Headers />
+            <Container style={{ paddingTop: 50 }}>
             <h2>Your Cart</h2>
             {cartItems.length === 0 ? (
                 <p>Your cart is empty.</p>
@@ -43,6 +48,8 @@ const CartPage = () => {
                     <Link to="/content" className="btn btn-primary">Continue Shopping</Link>
                 </>
             )}
+               </Container>
+               <Footer/>
         </div>
     );
 };

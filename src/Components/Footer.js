@@ -1,29 +1,29 @@
 import React from 'react'
 import { Col, Container, Nav, NavItem, NavLink, Row } from 'react-bootstrap'
-import { Cloud, HouseFill, ThreeDotsVertical } from 'react-bootstrap-icons'
+import { Cart, Cloud, House, HouseFill, ThreeDotsVertical } from 'react-bootstrap-icons'
 
 export default function Footer() {
   return (
-    <Container fluid fixed="bottom">
-      <Row fixed="bottom">
+    <Container fluid className='fixed-bottom bg-light'>
+      <Row>
         <Col sm={6} lg={3}>
                 <Nav.Item className="d-flex flex-column align-items-center">
-                    <Cloud size={24} />
-                    <Nav.Link href="#home">Logo</Nav.Link>
+                    <House size={24} />
+                    <Nav.Link href="/">Home</Nav.Link>
+                </Nav.Item>
+            <Nav/>
+        </Col>
+        <Col sm={6} lg={3}>
+                <Nav.Item className="d-flex flex-column align-items-center">
+                    <Cart size={24} />
+                    <Nav.Link href="/cart">Cart</Nav.Link>
                 </Nav.Item>
             <Nav/>
         </Col>
         <Col sm={6} lg={3}>
                 <Nav.Item className="d-flex flex-column align-items-center">
                     <Cloud size={24} />
-                    <Nav.Link href="#home">Logo</Nav.Link>
-                </Nav.Item>
-            <Nav/>
-        </Col>
-        <Col sm={6} lg={3}>
-                <Nav.Item className="d-flex flex-column align-items-center">
-                    <Cloud size={24} />
-                    <Nav.Link href="#home">Logo</Nav.Link>
+                    <Nav.Link href="/profile">Profile</Nav.Link>
                 </Nav.Item>
             <Nav/>
         </Col>
