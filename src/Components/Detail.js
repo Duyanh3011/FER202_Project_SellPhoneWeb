@@ -20,13 +20,16 @@ const Detail = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const productResponse = await axios.get(`${BASE_URL}/products/${id}`);
+        const [productResponse, suppliersResponse] = await Promise.all([
+          axios.get(`${BASE_URL}/products/${id}`),
+          axios.get(`${BASE_URL}/suppliers`),
+        ]);
+
         const foundProduct = productResponse.data;
         setProduct(foundProduct);
 
-        setSelectedImage(foundProduct.Images.length > 0 ? foundProduct.Images[0]?.link : null);
+        setSelectedImage(foundProduct.Images.length > 0? foundProduct.Images[0]?.link : null);
 
-        const suppliersResponse = await axios.get(`${BASE_URL}/suppliers`);
         const allSuppliers = suppliersResponse.data;
         setSuppliers(allSuppliers);
 
@@ -63,7 +66,7 @@ const Detail = () => {
       let cart = JSON.parse(localStorage.getItem("cart")) || [];
       const existingItemIndex = cart.findIndex((item) => item.id === cartItem.id);
 
-      if (existingItemIndex !== -1) {
+      if (existingItemIndex!== -1) {
         cart[existingItemIndex].quantity += 1;
       } else {
         cart.push(cartItem);
@@ -79,14 +82,14 @@ const Detail = () => {
     }
   };
 
-  const images = product.Images.map(image => ({
+  const images = product.Images.map((image) => ({
     original: image.link,
     thumbnail: image.link,
     originalAlt: product.Name,
     thumbnailAlt: product.Name,
   }));
 
-  const supplierNames = suppliers.map(supplier => supplier.name).join(", ");
+  const supplierNames = suppliers.map((supplier) => supplier.name).join(", ");
 
   return (
     <Container>
@@ -105,20 +108,11 @@ const Detail = () => {
               />
             )}
           </Card>
-          <Row>
-            <ImageGallery
-              items={images}
-              showNav={false}
-              showPlayButton={false}
-              showFullscreenButton={false}
-              autoPlay={true}
-              slideInterval={3000}
-              onSlide={(index) => handleImageSelect(index)}
-            />
-          </Row>
         </Col>
         <Col md={4}>
-          <h2 style={{ fontSize: "24px", fontWeight: "bold", marginBottom: "20px" }}>{product.Name}</h2>
+          <h2 style={{ fontSize: "24px", fontWeight: "bold", marginBottom: "20px" }}>
+            {product.Name}
+          </h2>
           <p style={{ fontSize: "18px", marginBottom: "10px" }}>
             <strong>Price:</strong> {product.Price.toLocaleString()} VND
           </p>
@@ -127,8 +121,8 @@ const Detail = () => {
           </p>
           <p style={{ fontSize: "16px", marginBottom: "10px" }}>
             <strong>Status: </strong>
-            <span style={{ color: product.status ? "green" : "red", fontWeight: "bold" }}>
-              {product.status ? "In stock" : "Out of stock"}
+            <span style={{ color: product.status? "green" : "red", fontWeight: "bold" }}>
+              {product.status? "In stock" : "Out of stock"}
             </span>
           </p>
           <Button
@@ -139,6 +133,17 @@ const Detail = () => {
             Add To Cart
           </Button>
         </Col>
+      </Row>
+      <Row>
+        <ImageGallery
+          items={images}
+          showNav={false}
+          showPlayButton={false}
+          showFullscreenButton={false}
+          autoPlay={true}
+          slideInterval={3000}
+          onSlide={(index) => handleImageSelect(index)}
+        />
       </Row>
     </Container>
   );
