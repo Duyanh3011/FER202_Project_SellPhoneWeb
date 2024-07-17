@@ -12,8 +12,8 @@ import Profile from './Components/Profile';
 import ListProducts from './Components/Admin/ListProducts';
 import EditProducts from './Components/Admin/EditProducts';
 import CreateProducts from './Components/Admin/CreateProducts';
-import Header from './Components/Header'; // Import Header component
-import Footer from './Components/Footer'; // Import Footer component
+import Header from './Components/Headers'; 
+import Footer from './Components/Footer';
 
 function App() {
   return (
