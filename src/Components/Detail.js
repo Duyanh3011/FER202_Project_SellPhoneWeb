@@ -1,144 +1,147 @@
 import React, { useEffect, useState } from "react";
-import { Container, Table, Button } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Container, Row, Col, Card, Button } from "react-bootstrap";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import ImageGallery from 'react-image-gallery';
+import 'react-image-gallery/styles/css/image-gallery.css';
 
-const CartPage = () => {
-  const [cart, setCart] = useState([]);
+const BASE_URL = "http://localhost:9999";
 
-  useEffect(() => {
-    const storedCart = JSON.parse(localStorage.getItem("cart")) || [];
-    setCart(storedCart);
-  }, []); // useEffect dependency array should be empty to run once on mount
+const Detail = () => {
+  const { id } = useParams();
+  const navigate = useNavigate();
 
-  const clearCart = () => {
-    localStorage.removeItem("cart");
-    setCart([]);
-  };
-
-  const removeFromCart = (id) => {
-    const updatedCart = cart.filter((item) => item.id !== id);
-    setCart(updatedCart);
-    localStorage.setItem("cart", JSON.stringify(updatedCart));
-  };
-
-  const updateQuantity = (id, newQuantity) => {
-    const updatedCart = cart.map((item) =>
-      item.id === id ? { ...item, quantity: newQuantity } : item
-    );
-    setCart(updatedCart);
-    localStorage.setItem("cart", JSON.stringify(updatedCart));
-  };
-
-  const calculateTotal = () => {
-    return cart.reduce((acc, item) => acc + (item.price || 0) * item.quantity, 0);
-  };
-
-  const vat = 0.08;
+  const [product, setProduct] = useState(null);
+  const [selectedImage, setSelectedImage] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [suppliers, setSuppliers] = useState([]);
 
   useEffect(() => {
-    // Fetch product details including images
-    const fetchProductImages = async () => {
+    const fetchData = async () => {
       try {
-        const productIds = cart.map(item => item.id);
-        const productsPromises = productIds.map(id =>
-          axios.get(`http://localhost:9999/products/${id}`)
-        );
-        const productsResponses = await Promise.all(productsPromises);
-        const updatedCart = cart.map((item, index) => ({
-          ...item,
-          images: productsResponses[index].data.images // Assuming images are stored in 'images' field
-        }));
-        setCart(updatedCart);
+        const productResponse = await axios.get(`${BASE_URL}/products/${id}`);
+        const foundProduct = productResponse.data;
+        setProduct(foundProduct);
+
+        setSelectedImage(foundProduct.Images.length > 0 ? foundProduct.Images[0]?.link : null);
+
+        const suppliersResponse = await axios.get(`${BASE_URL}/suppliers`);
+        const allSuppliers = suppliersResponse.data;
+        setSuppliers(allSuppliers);
+
+        setLoading(false);
       } catch (error) {
-        console.error("Error fetching product images:", error);
+        setError(error.message);
+        setLoading(false);
       }
     };
 
-    fetchProductImages();
-  }, [cart]);
+    fetchData();
+  }, [id]);
+
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error}</div>;
+  if (!product || suppliers.length === 0) return <div>No product found.</div>;
+
+  const handleImageSelect = (index) => {
+    setSelectedImage(product.Images[index]?.link);
+  };
+
+  const addToCart = () => {
+    if (!product) return;
+
+    const cartItem = {
+      id: product.id,
+      name: product.Name,
+      price: product.Price,
+      quantity: 1,
+      images: product.Images,
+    };
+
+    try {
+      let cart = JSON.parse(localStorage.getItem("cart")) || [];
+      const existingItemIndex = cart.findIndex((item) => item.id === cartItem.id);
+
+      if (existingItemIndex !== -1) {
+        cart[existingItemIndex].quantity += 1;
+      } else {
+        cart.push(cartItem);
+      }
+
+      localStorage.setItem("cart", JSON.stringify(cart));
+      alert("Added to cart successfully!");
+
+      navigate('/cart');
+    } catch (error) {
+      console.error("Error adding to cart:", error);
+      alert("Failed to add to cart. Please try again.");
+    }
+  };
+
+  const images = product.Images.map(image => ({
+    original: image.link,
+    thumbnail: image.link,
+    originalAlt: product.Name,
+    thumbnailAlt: product.Name,
+  }));
+
+  const supplierNames = suppliers.map(supplier => supplier.name).join(", ");
 
   return (
     <Container>
       <Link to="/">
-        <Button variant="success" className="mb-2">
-          Go to Home
-        </Button>
+        <Button variant="success">Go to Home</Button>
       </Link>
-      {cart.length > 0 && (
-        <div className="d-flex justify-content-end">
-          <Button variant="danger" onClick={clearCart} className="mb-3">
-            Clear cart
+      <Row className="my-4">
+        <Col md={8}>
+          <Card className="mb-3">
+            {selectedImage && (
+              <Card.Img
+                variant="top"
+                src={selectedImage}
+                alt={product.Name}
+                style={{ height: "500px", width: "auto", objectFit: "contain" }}
+              />
+            )}
+          </Card>
+          <Row>
+            <ImageGallery
+              items={images}
+              showNav={false}
+              showPlayButton={false}
+              showFullscreenButton={false}
+              autoPlay={true}
+              slideInterval={3000}
+              onSlide={(index) => handleImageSelect(index)}
+            />
+          </Row>
+        </Col>
+        <Col md={4}>
+          <h2 style={{ fontSize: "24px", fontWeight: "bold", marginBottom: "20px" }}>{product.Name}</h2>
+          <p style={{ fontSize: "18px", marginBottom: "10px" }}>
+            <strong>Price:</strong> {product.Price.toLocaleString()} VND
+          </p>
+          <p style={{ fontSize: "16px", marginBottom: "10px" }}>
+            <strong>Supplier:</strong> {supplierNames}
+          </p>
+          <p style={{ fontSize: "16px", marginBottom: "10px" }}>
+            <strong>Status: </strong>
+            <span style={{ color: product.status ? "green" : "red", fontWeight: "bold" }}>
+              {product.status ? "In stock" : "Out of stock"}
+            </span>
+          </p>
+          <Button
+            variant="primary"
+            onClick={addToCart}
+            style={{ marginTop: "20px" }}
+          >
+            Add To Cart
           </Button>
-        </div>
-      )}
-      {cart.length > 0 ? (
-        <>
-          <Table striped bordered hover>
-            <thead>
-              <tr>
-                <th>Product Id</th>
-                <th>Product name</th>
-                <th>Image</th>
-                <th>Price (vnd)</th>
-                <th>Quantity</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              {cart.map((item, index) => (
-                <tr key={index}>
-                  <td>{item.id}</td>
-                  <td>{item.name || "Name not available"}</td>
-                  <td>
-                    {item.images && item.images.length > 0 ? (
-                      <img
-                        src={item.images[0].link} // Adjust this based on your API response structure
-                        alt={item.name}
-                        style={{ width: "auto", height: "100px" }}
-                      />
-                    ) : (
-                      "No Image"
-                    )}
-                  </td>
-                  <td>{item.price ? item.price.toLocaleString() : 'Price not available'} VND</td>
-                  <td>
-                    <input
-                      type="number"
-                      value={item.quantity}
-                      min="1"
-                      onChange={(e) =>
-                        updateQuantity(item.id, parseInt(e.target.value))
-                      }
-                    />
-                  </td>
-                  <td>
-                    <Button
-                      variant="outline-danger"
-                      onClick={() => removeFromCart(item.id)}
-                    >
-                      Remove
-                    </Button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </Table>
-          <div className="float-right">
-            <span>VAT: {vat * 100}%</span>
-            <br />
-            <Button variant="success" className="mt-3">
-              Total: {(calculateTotal() * (1 + vat)).toLocaleString()} VND
-            </Button>
-          </div>
-        </>
-      ) : (
-        <div className="text-center">
-          <h3 style={{ color: "red" }}>EMPTY CART</h3>
-        </div>
-      )}
+        </Col>
+      </Row>
     </Container>
   );
 };
 
-export default CartPage;
+export default Detail;

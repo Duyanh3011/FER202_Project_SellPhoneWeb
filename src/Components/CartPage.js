@@ -3,37 +3,30 @@ import { Container, Table, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
-const BASE_URL = "http://localhost:9999";
-
 const CartPage = () => {
   const [cart, setCart] = useState([]);
 
   useEffect(() => {
-    const storedCart = JSON.parse(localStorage.getItem("cart")) || [];
-    setCart(storedCart);
-  }, []); // useEffect dependency array should be empty to run once on mount
-
-  useEffect(() => {
-    const fetchProductDetails = async () => {
-      const updatedCart = [];
-      for (const item of cart) {
-        try {
-          const response = await axios.get(`${BASE_URL}/products/${item.id}`);
-          const { name, images } = response.data;
-          updatedCart.push({
-            ...item,
-            name: name,
-            images: images,
-          });
-        } catch (error) {
-          console.error(`Error fetching product ${item.id}:`, error);
-        }
+    const fetchCartData = async () => {
+      try {
+        const storedCart = JSON.parse(localStorage.getItem("cart")) || [];
+        const cartWithDetails = await Promise.all(
+          storedCart.map(async (item) => {
+            const response = await axios.get(`http://localhost:9999/products/${item.id}`);
+            return {
+              ...item,
+              details: response.data,
+            };
+          })
+        );
+        setCart(cartWithDetails);
+      } catch (error) {
+        console.error("Error fetching cart data:", error);
       }
-      setCart(updatedCart);
     };
 
-    fetchProductDetails();
-  }, [cart]);
+    fetchCartData();
+  }, []); // useEffect dependency array should be empty to run once on mount
 
   const clearCart = () => {
     localStorage.removeItem("cart");
@@ -55,7 +48,7 @@ const CartPage = () => {
   };
 
   const calculateTotal = () => {
-    return cart.reduce((acc, item) => acc + (item.price || 0) * item.quantity, 0);
+    return cart.reduce((acc, item) => acc + (item.details?.Price || 0) * item.quantity, 0);
   };
 
   const vat = 0.08;
@@ -91,19 +84,19 @@ const CartPage = () => {
               {cart.map((item, index) => (
                 <tr key={index}>
                   <td>{item.id}</td>
-                  <td>{item.name || "Name not available"}</td>
+                  <td>{item.details?.Name || "Name not available"}</td>
                   <td>
-                    {item.images && item.images.length > 0 ? (
+                    {item.details && item.details.Images && item.details.Images.length > 0 ? (
                       <img
-                        src={`${BASE_URL}/${item.images[0].link}`}
-                        alt={item.name}
+                        src={item.details.Images[0].link}
+                        alt={item.details.Name}
                         style={{ width: "auto", height: "100px" }}
                       />
                     ) : (
                       "No Image"
                     )}
                   </td>
-                  <td>{item.price ? item.price.toLocaleString() : 'Price not available'} VND</td>
+                  <td>{item.details?.Price ? item.details.Price.toLocaleString() : 'Price not available'} VND</td>
                   <td>
                     <input
                       type="number"
@@ -115,6 +108,9 @@ const CartPage = () => {
                     />
                   </td>
                   <td>
+                    <Link to={`/detail/${item.id}`}>
+                      <Button variant="primary">View Details</Button>
+                    </Link>
                     <Button
                       variant="outline-danger"
                       onClick={() => removeFromCart(item.id)}

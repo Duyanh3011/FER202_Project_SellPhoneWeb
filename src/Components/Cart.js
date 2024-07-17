@@ -24,7 +24,7 @@ const Cart = ({ id, isLoggedIn }) => {
         }
 
         localStorage.setItem('cart', JSON.stringify(updatedCart));
-        navigate('/cartpage');  // Navigate to cartpage after adding to cart
+        navigate('/cart');  // Navigate to cartpage after adding to cart
     };
 
     return (
