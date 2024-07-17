@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const Cart = ({ id, isLoggedIn }) => {
-    const [cartItems, setCartItems] = useState([]);
     const navigate = useNavigate();
 
     const addToCart = () => {
@@ -12,15 +11,20 @@ const Cart = ({ id, isLoggedIn }) => {
             return;
         }
 
-        const found = cartItems.find(item => item.id === id);
+        const storedCart = JSON.parse(localStorage.getItem('cart')) || [];
+        const found = storedCart.find(item => item.id === id);
+
+        let updatedCart;
         if (found) {
-            const updatedCart = cartItems.map(item =>
+            updatedCart = storedCart.map(item =>
                 item.id === id ? { ...item, quantity: item.quantity + 1 } : item
             );
-            setCartItems(updatedCart);
         } else {
-            setCartItems([...cartItems, { id, quantity: 1 }]);
+            updatedCart = [...storedCart, { id, quantity: 1 }];
         }
+
+        localStorage.setItem('cart', JSON.stringify(updatedCart));
+        navigate('/cartpage');  // Navigate to cartpage after adding to cart
     };
 
     return (

@@ -1,57 +1,146 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import Headers from './Headers';
-import { Container } from 'react-bootstrap';
-import Footer from './Footer';
+import React, { useEffect, useState } from "react";
+import { Container, Table, Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import axios from "axios";
+
+const BASE_URL = "http://localhost:9999";
 
 const CartPage = () => {
-    const [cartItems, setCartItems] = useState([]);
+  const [cart, setCart] = useState([]);
 
-    // Function to remove an item from the cart
-    const removeFromCart = (id) => {
-        const updatedCart = cartItems.filter(item => item.id !== id);
-        setCartItems(updatedCart);
+  useEffect(() => {
+    const storedCart = JSON.parse(localStorage.getItem("cart")) || [];
+    setCart(storedCart);
+  }, []); // useEffect dependency array should be empty to run once on mount
+
+  useEffect(() => {
+    const fetchProductDetails = async () => {
+      const updatedCart = [];
+      for (const item of cart) {
+        try {
+          const response = await axios.get(`${BASE_URL}/products/${item.id}`);
+          const { name, images } = response.data;
+          updatedCart.push({
+            ...item,
+            name: name,
+            images: images,
+          });
+        } catch (error) {
+          console.error(`Error fetching product ${item.id}:`, error);
+        }
+      }
+      setCart(updatedCart);
     };
 
-    // Function to update quantity of an item in the cart
-    const updateQuantity = (id, newQuantity) => {
-        const updatedCart = cartItems.map(item =>
-            item.id === id ? { ...item, quantity: newQuantity } : item
-        );
-        setCartItems(updatedCart);
-    };
+    fetchProductDetails();
+  }, [cart]);
 
-    // Calculate total number of items in the cart
-    const getTotalItems = () => {
-        return cartItems.reduce((total, item) => total + item.quantity, 0);
-    };
+  const clearCart = () => {
+    localStorage.removeItem("cart");
+    setCart([]);
+  };
 
-    return (
-        <div className="container">
-            <Headers />
-            <Container style={{ paddingTop: 50 }}>
-            <h2>Your Cart</h2>
-            {cartItems.length === 0 ? (
-                <p>Your cart is empty.</p>
-            ) : (
-                <>
-                    {cartItems.map(item => (
-                        <div key={item.id} className="cart-item">
-                            <p>Product ID: {item.id}</p>
-                            <p>Quantity: 
-                                <input type="number" value={item.quantity} onChange={(e) => updateQuantity(item.id, parseInt(e.target.value))} />
-                            </p>
-                            <button onClick={() => removeFromCart(item.id)} className="btn btn-outline-danger">Remove</button>
-                        </div>
-                    ))}
-                    <p>Total Items: {getTotalItems()}</p>
-                    <Link to="/content" className="btn btn-primary">Continue Shopping</Link>
-                </>
-            )}
-               </Container>
-               <Footer/>
-        </div>
+  const removeFromCart = (id) => {
+    const updatedCart = cart.filter((item) => item.id !== id);
+    setCart(updatedCart);
+    localStorage.setItem("cart", JSON.stringify(updatedCart));
+  };
+
+  const updateQuantity = (id, newQuantity) => {
+    const updatedCart = cart.map((item) =>
+      item.id === id ? { ...item, quantity: newQuantity } : item
     );
+    setCart(updatedCart);
+    localStorage.setItem("cart", JSON.stringify(updatedCart));
+  };
+
+  const calculateTotal = () => {
+    return cart.reduce((acc, item) => acc + (item.price || 0) * item.quantity, 0);
+  };
+
+  const vat = 0.08;
+
+  return (
+    <Container>
+      <Link to="/">
+        <Button variant="success" className="mb-2">
+          Go to Home
+        </Button>
+      </Link>
+      {cart.length > 0 && (
+        <div className="d-flex justify-content-end">
+          <Button variant="danger" onClick={clearCart} className="mb-3">
+            Clear cart
+          </Button>
+        </div>
+      )}
+      {cart.length > 0 ? (
+        <>
+          <Table striped bordered hover>
+            <thead>
+              <tr>
+                <th>Product Id</th>
+                <th>Product name</th>
+                <th>Image</th>
+                <th>Price (vnd)</th>
+                <th>Quantity</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {cart.map((item, index) => (
+                <tr key={index}>
+                  <td>{item.id}</td>
+                  <td>{item.name || "Name not available"}</td>
+                  <td>
+                    {item.images && item.images.length > 0 ? (
+                      <img
+                        src={`${BASE_URL}/${item.images[0].link}`}
+                        alt={item.name}
+                        style={{ width: "auto", height: "100px" }}
+                      />
+                    ) : (
+                      "No Image"
+                    )}
+                  </td>
+                  <td>{item.price ? item.price.toLocaleString() : 'Price not available'} VND</td>
+                  <td>
+                    <input
+                      type="number"
+                      value={item.quantity}
+                      min="1"
+                      onChange={(e) =>
+                        updateQuantity(item.id, parseInt(e.target.value))
+                      }
+                    />
+                  </td>
+                  <td>
+                    <Button
+                      variant="outline-danger"
+                      onClick={() => removeFromCart(item.id)}
+                    >
+                      Remove
+                    </Button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </Table>
+          <div className="float-right">
+            <span>VAT: {vat * 100}%</span>
+            <br />
+            <Button variant="success" className="mt-3">
+              Total: {(calculateTotal() * (1 + vat)).toLocaleString()} VND
+            </Button>
+          </div>
+        </>
+      ) : (
+        <div className="text-center">
+          <h3 style={{ color: "red" }}>EMPTY CART</h3>
+        </div>
+      )}
+    </Container>
+  );
 };
 
 export default CartPage;
