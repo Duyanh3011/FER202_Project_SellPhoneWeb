@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Container, Table, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import Headers from "./Headers";
 
 const CartPage = () => {
   const [cart, setCart] = useState([]);
@@ -54,7 +55,9 @@ const CartPage = () => {
   const vat = 0.08;
 
   return (
-    <Container>
+    <>
+    <Headers />
+    <Container style={{paddingTop: 70}}>
       <Link to="/">
         <Button variant="success" className="mb-2">
           Go to Home
@@ -136,6 +139,7 @@ const CartPage = () => {
         </div>
       )}
     </Container>
+    </>
   );
 };
 

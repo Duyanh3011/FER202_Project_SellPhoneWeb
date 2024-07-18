@@ -19,7 +19,7 @@ function App() {
   return (
     <BrowserRouter>
       <div className="App">
-        <Header /> {/* Header component */}
+        {/* <Header /> Header component */}
         <Container>
           <Routes>
             <Route path="/" element={<Content />} />
@@ -36,7 +36,7 @@ function App() {
             <Route path="/admin/create" element={<CreateProducts />} />
           </Routes>
         </Container>
-        <Footer /> {/* Footer component */}
+        {/* <Footer /> Footer component */}
       </div>
     </BrowserRouter>
   );
