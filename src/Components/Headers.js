@@ -70,8 +70,9 @@ const Headers = () => {
                             onClick={handleSignInClick}
                         >
                             SignIn
-                        </NavLink>
+                        </NavLink>                
                     )}
+                    
                 </Nav>
             </Navbar.Collapse>
         </Navbar>

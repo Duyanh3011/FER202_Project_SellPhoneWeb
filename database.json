@@ -257,9 +257,8 @@
     {
       "id": "9",
       "Name": "Vivo V25 5G 8GB-128GB",
-      "Category_ID": 3,
-      "Price": 9390000,
-      "Supplier_ID": 1,
+      "Category_ID": "1",
+      "Price": "9400000",
       "Images": [
         {
           "id": 1,
@@ -503,31 +502,6 @@
           "link": "https://cdn2.cellphones.com.vn/x/media/catalog/product/6/0/60.4-nokia-8612.png"
         }
       ]
-    },
-    {
-      "id": "19",
-      "Name": "Nokia G22 4GB-128GB",
-      "Category_ID": 6,
-      "Price": 3690000,
-      "Supplier_ID": 2,
-      "Images": [
-        {
-          "id": 1,
-          "link": "https://cdn2.cellphones.com.vn/x/media/catalog/product/n/o/nokia-32-1.png"
-        },
-        {
-          "id": 2,
-          "link": "https://cdn2.cellphones.com.vn/x/media/catalog/product/n/o/nokia-32-2.png"
-        },
-        {
-          "id": 3,
-          "link": "https://cdn2.cellphones.com.vn/x/media/catalog/product/n/o/nokia-32-3.png"
-        },
-        {
-          "id": 4,
-          "link": "https://cdn2.cellphones.com.vn/x/media/catalog/product/n/o/nokia-32-4.png"
-        }
-      ]
     }
   ],
   "user": [
@@ -578,6 +552,17 @@
       "account": "tuanmt",
       "roll": 2,
       "password": "123456"
+    },
+    {
+      "id": "f86c",
+      "firstName": "Anh",
+      "lastName": "Tran",
+      "phone": "0987654321",
+      "address": "ABC",
+      "email": "abc@gmail.com",
+      "dateOfBirth": "20004-11-30",
+      "account": "test1",
+      "password": "123"
     }
   ]
 }
